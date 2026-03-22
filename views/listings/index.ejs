@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wanderlust – All Listings</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>🌍 Wanderlust</h1>
+      <p class="tagline">Find your perfect stay anywhere in the world.</p>
+    </header>
+
+    <main>
+      <div class="listings-header">
+        <h2>All Listings</h2>
+        <a href="/listings/new" class="btn btn-primary">+ New Listing</a>
+      </div>
+
+      <% if (allListings.length === 0) { %>
+        <p class="empty-msg">No listings available yet. Be the first to add one!</p>
+      <% } else { %>
+        <ul class="listings-grid">
+          <% for (let listing of allListings) { %>
+            <li class="listing-card">
+              <a href="/listings/<%= listing._id %>">
+                <img
+                  src="<%= listing.image.url %>"
+                  alt="<%= listing.title %>"
+                  onerror="this.src='https://images.unsplash.com/photo-1625505826533-5c80aca7d157?auto=format&fit=crop&w=800&q=60'"
+                />
+                <div class="card-body">
+                  <h3><%= listing.title %></h3>
+                  <p class="location">📍 <%= listing.location %>, <%= listing.country %></p>
+                  <p class="price">₹<%= listing.price.toLocaleString("en-IN") %> / night</p>
+                </div>
+              </a>
+            </li>
+          <% } %>
+        </ul>
+      <% } %>
+    </main>
+
+    <footer>
+      <p>&copy; Mandeep Sharma | 2025 Wanderlust. All rights reserved.</p>
+    </footer>
+  </body>
+</html>
